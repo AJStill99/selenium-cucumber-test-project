@@ -1,0 +1,7 @@
+28/04/2026:
+
+Added the dependencies needed for this (Selenium-java, cucumber-java, cucumber-junit, junit)
+Also added in the maven-surefire-plugin + maven-compiler-plugin into plugins
+
+From this, created the test runner, the features. and stepdefs
+The above is I needed to be able to run tests using cucumber
