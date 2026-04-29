@@ -1,4 +1,4 @@
-package constants;
+package helpers;
 
 public class Constants {
     public static boolean testBool = false;

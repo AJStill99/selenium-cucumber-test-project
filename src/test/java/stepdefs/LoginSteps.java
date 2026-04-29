@@ -3,7 +3,7 @@ package stepdefs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-import constants.Constants;
+import helpers.Constants;
 
 public class LoginSteps {
 
