@@ -4,7 +4,7 @@ import base.DriverManager;
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
 
-public class hooks extends DriverManager {
+public class hooks extends DriverManager { // The extends give us access to the DriverManager class in a clean way
 
     @Before
     public void before() {
