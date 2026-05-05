@@ -1,16 +1,27 @@
 package stepdefs;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import helpers.Constants;
+import pages.LoginPage;
+import base.DriverManager;
 
 public class LoginSteps {
+    LoginPage loginPage;
 
     public String message = "This is a TEST";
 
+    @Before // Separate to the hooks @Before
+    public void pageSetUp() { // execute method if you use ANY of these class methods/step defs below in a feature file
+        loginPage = new LoginPage(DriverManager.getDriver());
+        // Don't want to use this long term apparently
+    }
+
     @Given("user is on login page")
     public void user_is_on_login_page() {
+
         System.out.println("On login page");
     }
 
