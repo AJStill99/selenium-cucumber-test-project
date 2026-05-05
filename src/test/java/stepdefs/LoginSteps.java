@@ -9,6 +9,7 @@ import pages.LoginPage;
 import base.DriverManager;
 
 public class LoginSteps {
+    // ADD THE LOGIN PAGE METHODS TO HERE
     LoginPage loginPage;
 
     public String message = "This is a TEST";
@@ -25,6 +26,21 @@ public class LoginSteps {
         System.out.println("On login page");
     }
 
+    @When("I enter user email")
+    public void i_enter_user_email() {
+        loginPage.emailFill("admin");
+    }
+
+    @When("I enter user password")
+    public void i_enter_user_password() {
+        loginPage.passwordFill("admin");
+    }
+
+    @When("I click login button")
+    public void i_click_login_button() {
+        loginPage.clickLoginButton();
+    }
+
     @When("user enters valid username and password")
     public void user_enters_valid_username_and_password() {
         System.out.println("Entering credentials");
@@ -33,7 +49,7 @@ public class LoginSteps {
     @When("user enter invalid username and password")
     public void user_enter_invalid_username_and_password() {
         System.out.println("Entering invalid credentials");
-        System.out.println("INAVLID CREDENTIALS -- Please enter correct username and password");
+        System.out.println("INVALID CREDENTIALS -- Please enter correct username and password");
     }
 
     @Then("user should be logged in")
