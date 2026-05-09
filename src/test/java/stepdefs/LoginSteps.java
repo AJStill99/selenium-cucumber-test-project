@@ -4,15 +4,16 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-import helpers.Constants;
+import org.junit.Assert;
 import pages.LoginPage;
 import base.DriverManager;
+import org.junit.Assert.*;
 
 public class LoginSteps {
     // ADD THE LOGIN PAGE METHODS TO HERE
     LoginPage loginPage;
 
-    public String message = "This is a TEST";
+    // Constants come from the LoginPage.java, which are private so we cannot access them here directly
 
     @Before // Separate to the hooks @Before
     public void pageSetUp() { // execute method if you use ANY of these class methods/step defs below in a feature file
@@ -22,44 +23,50 @@ public class LoginSteps {
 
     @Given("user is on login page")
     public void user_is_on_login_page() {
-
-        System.out.println("On login page");
+        loginPage.getCurrentURL();
+        Assert.assertEquals("https://www.saucedemo.com/", loginPage.getCurrentURL());
     }
 
-    @When("I enter user email")
+
+    // Valid logins
+    @When("I enter user email correctly")
     public void i_enter_user_email() {
-        loginPage.emailFill("admin");
+        loginPage.emailFill("standard_user");
     }
 
-    @When("I enter user password")
+    @When("I enter user password correctly")
     public void i_enter_user_password() {
-        loginPage.passwordFill("admin");
+        loginPage.passwordFill("secret_sauce");
     }
+
+    // Invalid logins
+
+    @When("I enter user email incorrectly")
+    public void i_enter_user_email_incorrectly() {
+        loginPage.emailFill("wrongEmail");
+    }
+
+    @When("I enter user password incorrectly")
+    public void i_enter_user_password_incorrectly() {
+        loginPage.passwordFill("wrongPassword");
+    }
+
+    // Login button click
 
     @When("I click login button")
     public void i_click_login_button() {
         loginPage.clickLoginButton();
     }
 
-    @When("user enters valid username and password")
-    public void user_enters_valid_username_and_password() {
-        System.out.println("Entering credentials");
-    }
-
-    @When("user enter invalid username and password")
-    public void user_enter_invalid_username_and_password() {
-        System.out.println("Entering invalid credentials");
-        System.out.println("INVALID CREDENTIALS -- Please enter correct username and password");
-    }
-
+    // Assertions
     @Then("user should be logged in")
     public void user_should_be_logged_in() {
-        System.out.println("Logged in as: " + message);
-        System.out.println(Constants.testString);
+        Assert.assertEquals("https://www.saucedemo.com/inventory.html", loginPage.getCurrentURL());
     }
 
     @Then("User will not be logged in")
     public void user_will_not_be_logged_in() {
-        System.out.println("User is NOT be logged in");
+        Assert.assertTrue(loginPage.isErrorDisplayed());
+        // remember we cannot access the constants directly as they're private
     }
 }
