@@ -1,5 +1,6 @@
 package stepdefs;
 
+import helpers.Navigation;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -8,21 +9,24 @@ import org.junit.Assert;
 import pages.LoginPage;
 import base.DriverManager;
 import org.junit.Assert.*;
+import utils.ConfigReader;
 
 public class LoginSteps {
     // ADD THE LOGIN PAGE METHODS TO HERE
     LoginPage loginPage;
+    Navigation navigation;
 
     // Constants come from the LoginPage.java, which are private so we cannot access them here directly
 
     @Before // Separate to the hooks @Before
     public void pageSetUp() { // execute method if you use ANY of these class methods/step defs below in a feature file
         loginPage = new LoginPage(DriverManager.getDriver());
-        // Don't want to use this long term apparently
+        navigation = new Navigation(DriverManager.getDriver());
     }
 
     @Given("user is on login page")
     public void user_is_on_login_page() {
+        navigation.GoTo(ConfigReader.get("base_url"));
         loginPage.getCurrentURL();
         Assert.assertEquals("https://www.saucedemo.com/", loginPage.getCurrentURL());
     }

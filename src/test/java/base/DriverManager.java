@@ -14,7 +14,7 @@ public class DriverManager {
         driver = new ChromeDriver(); // Assigning the driver to the interface object, allowing the driver to follow the driver interface rules
         driver.manage().window().maximize();
 
-        driver.get(ConfigReader.get("base_url"));
+        // driver.get(ConfigReader.get("base_url"));
     }
 
     public static void teardown() {
