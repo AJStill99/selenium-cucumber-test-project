@@ -16,3 +16,10 @@ Developed the login feature. This included:
 
 Changed the base_url so the configReader could pass it into DriverManager
 Testing Pull Request functionality. Part 2
+
+10/05/2026
+
+- Added in navigation during the actual stepdefs, not in the @Before hook - helps with flexibility.
+- Set navigation class to have a valid driver in the @Before hook of the stepdefs file.
+- Added a 'Routing' class, which includes a class of String values for the URL extensions
+- Call navigation in first stepdef so the test has the shared state of the driver
