@@ -15,6 +15,7 @@ public class LoginSteps {
     // ADD THE LOGIN PAGE METHODS TO HERE
     LoginPage loginPage;
     Navigation navigation;
+    public String base_url = ConfigReader.get("base_url");
 
     // Constants come from the LoginPage.java, which are private so we cannot access them here directly
 
@@ -26,7 +27,7 @@ public class LoginSteps {
 
     @Given("user is on login page")
     public void user_is_on_login_page() {
-        navigation.GoTo(ConfigReader.get("base_url"));
+        navigation.GoTo(base_url);
         loginPage.getCurrentURL();
         Assert.assertEquals("https://www.saucedemo.com/", loginPage.getCurrentURL());
     }
