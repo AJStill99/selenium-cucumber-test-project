@@ -21,6 +21,8 @@ public class ProductSteps {
     ProductsPage productsPage;
     Navigation navigation;
     public String base_url = ConfigReader.get("base_url");
+    public String products_url = base_url + '/' + Routing.Inventory;
+    // Should probably change this usage. Was just a quick code hack
 
     @Before
     public void pageSetup() {
@@ -30,19 +32,20 @@ public class ProductSteps {
 
     @Given("User is on products page")
     public void user_is_on_products_page() {
-        navigation.GoTo(base_url);
+        navigation.GoTo(products_url);
         Assert.assertEquals("https://www.saucedemo.com/" + Routing.Inventory, productsPage.getCurrentURL());
     }
 
-    @Given("I have the inventory list")
-    public List<WebElement> i_have_the_inventory_list() {
-        return productsPage.getInventoryList();
-    }
+    // @Given("I have the inventory list")
+    // public List<WebElement> i_have_the_inventory_list() {
+    //     return productsPage.getInventoryList();
+    // }
+    // // Need to fix this, does nothing
 
     @When("User clicks 'Add to cart'")
     public void user_clicks_add_to_cart() {
         // This is going to be tricky. Need to access the list of products, and access the Add To Cart button for each one
-
+        List<WebElement> products = productsPage.getInventoryList();
     }
 
 }
